@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  elasticsearch:
+    image: elasticsearch:6.5.4
+    networks:
+      - hankchan101
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./esdata/:/usr/share/elasticsearch/data/
+    environment:
+      - 'xpack.security.enabled=false'
+
+networks:
+  hankchan101:
+    external: true
