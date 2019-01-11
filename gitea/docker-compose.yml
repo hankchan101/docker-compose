@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+ server:
+   image: gitea/gitea:latest
+#   environment:
+#    - USER_UID=501
+#    - USER_GID=20
+#   restart: always
+   networks:
+    - hankchan101
+   volumes:
+    - ./gitea:/data
+   ports:
+    - "3000:3000"
+    - "22:22"
+#   depends_on:
+#    - db
+
+## remember! when you running gitea and mysql in different compose, make sure they are in same docker networks and the host to db is db name, like: mysql-5.7:3306 instead of localhost:3306
+## if you want to running gitea and mysql in same compose, do as following and forget what I said last line
+# db:
+#   image: mysql:5.7
+#   restart: always
+#   environment:
+#    - MYSQL_ROOT_PASSWORD=gitea
+#    - MYSQL_USER=gitea
+#    - MYSQL_PASSWORD=gitea
+#    - MYSQL_DATABASE=gitea
+#   networks:
+#    - hankchan101
+#   volumes:
+#    - ./mysql:/var/lib/mysql
+
+networks:
+  hankchan101:
+    external: true
