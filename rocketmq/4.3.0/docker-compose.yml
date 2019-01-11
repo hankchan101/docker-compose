@@ -4,8 +4,8 @@ services:
   namesrv:
     image: apache/rocketmq:4.3.0
     container_name: rmqnamesrv
-#    networks:
-#      - hankchan101
+    networks:
+      - hankchan101
     ports:
       - "9876:9876"
     volumes:
@@ -16,8 +16,8 @@ services:
   broker:
     image: apache/rocketmq:4.3.0
     container_name: rmqbroker
-#    networks:
-#      - hankchan101
+    networks:
+      - hankchan101
     ports:
       - "10909:10909"
       - "10911:10911"
@@ -28,10 +28,10 @@ services:
     depends_on:
       - namesrv
 
-#networks:
-#  hankchan101:
+networks:
+  hankchan101:
 ## if you want to make the link between 2 container on same network, driver is not needed, and set external true
 #    driver: bridge
-#    external: true
+    external: true
 
 
