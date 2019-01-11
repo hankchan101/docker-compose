@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  mysql-5.7:
+    image: mysql:5.7
+    networks:
+      - hankchan101
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data/:/var/lib/mysql
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=root'
+
+networks:
+  hankchan101:
+    external: true    
