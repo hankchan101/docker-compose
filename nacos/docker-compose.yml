@@ -1,0 +1,24 @@
+version: "3"
+services:
+  nacos:
+    image: nacos/nacos-server:latest
+    networks:
+      - hankchan101
+    environment:
+      - 'PREFER_HOST_MODE=hostname'
+      - 'MODE=standalone'
+      - 'SPRING_DATASOURCE_PLATFORM=mysql'
+      - 'MYSQL_SERVICE_HOST=mysql-5.7'
+      - 'MYSQL_SERVICE_PORT=3306'
+      - 'MYSQL_SERVICE_DB_NAME=nacos'
+      - 'MYSQL_SERVICE_USER=root'
+      - 'MYSQL_SERVICE_PASSWORD=root'
+    volumes:
+      - ./logs/:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+      - "9555:9555"
+networks:
+  hankchan101:
+    external: true
